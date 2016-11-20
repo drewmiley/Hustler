@@ -29,6 +29,12 @@ This folder contains the mock server calls for the api.
 ### Database project
 
 	+++ db
+    +-- object
+    |   +-- match.js
+    |   +-- player.js
+    +-- gameWeekDates.js
+    +-- matches.js
+    +-- players.js
 
 This folder contains the database structure which is called by the functions in the api folder.
 

@@ -10,6 +10,10 @@ import {
 	createStore
 } from 'redux';
 
+import db from '../db';
+
+console.log(db);
+
 import * as actions from './constants/actions';
 
 import AppContainer from './containers/AppContainer';
