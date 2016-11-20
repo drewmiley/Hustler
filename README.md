@@ -1,4 +1,4 @@
-# Matcher
+# Hustler
 
 React-redux bootstrap webpack Hustler Pool League website, containing mock server & api.
 
@@ -23,6 +23,12 @@ npm test
 ### Api project
     
 	+++ api
+    +-- gameweek.js
+    |   .get()
+    +-- match.js
+    |   .get()
+    +-- player.js
+    |   .get()
 
 This folder contains the mock server calls for the api.
 

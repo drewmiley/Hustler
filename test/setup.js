@@ -1,5 +1,6 @@
 import jsdom from 'jsdom';
 import chai from 'chai';
+import chaiDateTime from 'chai-datetime';
 import chaiImmutable from 'chai-immutable';
 
 const doc = jsdom.jsdom('<!doctype html><html><body></body></html>');
@@ -14,4 +15,5 @@ Object.keys(window).forEach((key) => {
     }
 });
 
+chai.use(chaiDateTime);
 chai.use(chaiImmutable);

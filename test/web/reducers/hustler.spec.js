@@ -9,7 +9,7 @@ import * as actions from '../../../src/web/constants/actions';
 
 import reducer from '../../../src/web/reducers/hustler';
 
-describe('reducer', () => {
+describe('web/reducer/hustler', () => {
 
 	describe('SET_STATE', () => {
 
