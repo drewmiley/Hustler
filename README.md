@@ -18,6 +18,35 @@ To run the set of unit tests, simply run
 npm test
 ```
 
+## Folder structure
+
+### Api project
+    
+	+++ api
+
+This folder contains the mock server calls for the api.
+
+### Database project
+
+	+++ db
+
+This folder contains the database structure which is called by the functions in the api folder.
+
+### Frontend project
+
+    +++ web
+    +-- actions
+    |   +-- hustler.js
+    +-- constants
+    |   +-- actions.js
+    +-- containers
+    |   +-- AppContainer.jsx
+    +-- reducers
+    |   +-- hustler.js
+    +-- index.jsx
+
+This folder contains the frontend web files which call the functions in the api folder to get the required data; the data is then utilised by the react components to display the league data.
+
 ## Deploying the app
 
 To deploy the app to gh-pages, there are a couple of steps to follow.
