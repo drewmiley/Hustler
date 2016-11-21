@@ -10,6 +10,8 @@ import {
 	createStore
 } from 'redux';
 
+import api from '../api/index';
+
 import * as actions from './constants/actions';
 
 import AppContainer from './containers/AppContainer';
@@ -24,7 +26,9 @@ const store = createStoreDevTools(reducer);
 
 store.dispatch({
     type: actions.SET_STATE,
-    state: {}
+    state: {
+        api
+    }
 })
 
 ReactDOM.render(
