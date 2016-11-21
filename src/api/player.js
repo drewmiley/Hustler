@@ -7,3 +7,7 @@ export const set = (players) => {
 export const get = () => {
 	return Players;
 };
+
+export const getById = id => {
+	return Players.find(player => player.id === id);
+};

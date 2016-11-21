@@ -30,4 +30,46 @@ describe('api/match', () => {
 
 	});
 
+	describe('has a getById(id) method', () => {
+
+		let match;
+
+		it('should return undefined for non-integer values', () => {
+			match = matchAPI.getById();
+			expect(match).to.equal(undefined);
+
+			match = matchAPI.getById('one');
+			expect(match).to.equal(undefined);
+
+			match = matchAPI.getById(new Date());
+			expect(match).to.equal(undefined);
+
+			match = matchAPI.getById(new Match());
+			expect(match).to.equal(undefined);
+		});
+
+		it('should return undefined for invalid integer values', () => {
+			match = matchAPI.getById(0);
+			expect(match).to.equal(undefined);
+
+			match = matchAPI.getById(-1);
+			expect(match).to.equal(undefined);
+
+			match = matchAPI.getById(11);
+			expect(match).to.equal(undefined);
+		});
+
+		it('should return the correct match for a valid integer value', () => {
+			match = matchAPI.getById(1);
+			expect(match).to.deep.equal(new Match(1, 1, 1, 2, 3, 3));
+
+			match = matchAPI.getById(6);
+			expect(match).to.deep.equal(new Match(6, 3, 1, 4));
+
+			match = matchAPI.getById(10);
+			expect(match).to.deep.equal(new Match(10, 5, 4, 5, 5, 1));
+		});
+
+	});
+
 });

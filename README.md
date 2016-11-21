@@ -25,10 +25,14 @@ npm test
 	+++ api
     +-- gameweek.js
     |   .get()
+    |   .getByDate(date)
+    |   .getByWeekNumber(weekNumber)
     +-- match.js
     |   .get()
+    |   .getById(id)
     +-- player.js
     |   .get()
+    |   .getById(id)
 
 This folder contains the mock server calls for the api.
 
@@ -36,9 +40,10 @@ This folder contains the mock server calls for the api.
 
 	+++ db
     +-- object
+    |   +-- gameWeek.js
     |   +-- match.js
     |   +-- player.js
-    +-- gameWeekDates.js
+    +-- gameWeeks.js
     +-- matches.js
     +-- players.js
 
