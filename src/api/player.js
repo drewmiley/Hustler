@@ -8,6 +8,6 @@ export const get = () => {
 	return Players;
 };
 
-export const getById = id => {
+export const getById = (id) => {
 	return Players.find(player => player.id === id);
 };

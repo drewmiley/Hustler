@@ -5,6 +5,7 @@ export default (id, gameWeek, homePlayerID, awayPlayerID, homeScore, awayScore) 
     	homePlayerID,
     	awayPlayerID,
     	homeScore,
-    	awayScore
+    	awayScore,
+    	isPlayed: (() => homeScore !== undefined && awayScore !== undefined)()
     };
 };

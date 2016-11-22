@@ -10,7 +10,7 @@ export const get = () => {
 	return GameWeeks;
 };
 
-export const getByDate = date => {
+export const getByDate = (date) => {
 	// TODO: Tidy up?
 	if (Object.prototype.toString.call(date) !== '[object Date]') {
 		return;
@@ -20,6 +20,6 @@ export const getByDate = date => {
 	return validWeekNumber ? GameWeeks.find(gameWeek => gameWeek.number === validWeekNumber) : new GameWeek(0);
 };
 
-export const getByWeekNumber = weekNumber => {
+export const getByWeekNumber = (weekNumber) => {
 	return GameWeeks.find(gameWeek => gameWeek.number === weekNumber);
 };
