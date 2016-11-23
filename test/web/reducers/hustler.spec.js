@@ -109,4 +109,36 @@ describe('web/reducer/hustler', () => {
 
 	});
 
+	describe('SET_DISPLAYED_DIV', () => {
+
+		const displayedDiv = 'div';
+		const action = {
+			type: actions.SET_DISPLAYED_DIV,
+			option: displayedDiv
+		};
+
+		it('handles SET_DISPLAYED_DIV with no initial value', () => {
+			const presetInitialState = Map({
+				displayClasses: Map({
+					selected: undefined
+				})
+			});
+			const nextState = reducer(presetInitialState, action);
+
+			expect(nextState.get('displayClasses').get('selected')).to.equal(displayedDiv);
+		});
+
+		it('handles SET_DISPLAYED_DIV with an initial value', () => {
+			const presetInitialState = Map({
+				displayClasses: Map({
+					selected: 'previous'
+				})
+			});
+			const nextState = reducer(presetInitialState, action);
+
+			expect(nextState.get('displayClasses').get('selected')).to.equal(displayedDiv);
+		});
+
+	});
+
 });

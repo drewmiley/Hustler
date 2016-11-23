@@ -14,6 +14,8 @@ import api from '../api/index';
 
 import * as actions from './constants/actions';
 
+import displayClasses from './constants/displayClasses';
+
 import AppContainer from './containers/AppContainer';
 
 import reducer from './reducers/hustler';
@@ -27,7 +29,8 @@ const store = createStoreDevTools(reducer);
 store.dispatch({
     type: actions.SET_STATE,
     state: {
-        api
+        api,
+        displayClasses
     }
 })
 
