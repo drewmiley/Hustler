@@ -1,6 +1,7 @@
 export default (number, date) => {
     return {
     	number,
-    	date
+    	date,
+    	formattedDate: date ? date.getDate() + '/' + (date.getMonth() + 1) : undefined
     };
 };

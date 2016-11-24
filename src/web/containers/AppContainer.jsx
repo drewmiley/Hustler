@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../actions/hustler';
 
 import DisplayTitle from '../components/DisplayTitle';
+import FixtureList from '../components/FixtureList';
 import Menu from '../components/Menu';
 
 class App extends Component {
@@ -13,13 +14,16 @@ class App extends Component {
         		displayClasses={this.props.displayClasses}
         		setDisplayedDiv={this.props.setDisplayedDiv} /> 
         	<DisplayTitle displayedClass={this.props.displayClasses.get('selected')} />
+            <FixtureList
+                api={this.props.api}
+                show={this.props.displayClasses.get('selected') === 'Fixture List'} />
         </div>
     };
 };
 
 const mapStateToProps = state => {
     return {
-    	api: state.get('api'),
+    	api: state.get('api').toJS(),
     	displayClasses: state.get('displayClasses')
     };
 };
