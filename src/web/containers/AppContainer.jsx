@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import * as actionCreators from '../actions/hustler';
 
 import DisplayTitle from '../components/DisplayTitle';
+import FixtureGrid from '../components/FixtureGrid';
 import FixtureList from '../components/FixtureList';
 import Menu from '../components/Menu';
 
@@ -17,6 +18,9 @@ class App extends Component {
             <FixtureList
                 api={this.props.api}
                 show={this.props.displayClasses.get('selected') === 'Fixture List'} />
+            <FixtureGrid
+                api={this.props.api}
+                show={this.props.displayClasses.get('selected') === 'Fixture Grid'} />
         </div>
     };
 };

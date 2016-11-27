@@ -60,11 +60,13 @@ This folder contains the database structure which is called by the functions in 
     |   +-- hustler.js
     +-- components
     |   +-- DisplayTitle.jsx
+    |   +-- FixtureGrid.jsx
     |   +-- FixtureList.jsx
     |   +-- FixtureView.jsx
     |   +-- Menu.jsx
     +-- constants
     |   +-- actions.js
+    |   +-- displayClasses.js
     +-- containers
     |   +-- AppContainer.jsx
     +-- reducers

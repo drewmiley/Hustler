@@ -44,7 +44,7 @@ describe('FixtureList', () => {
 
 	it('should render trs equal to number of matches plus 1', () => {
 		const tr = scryRenderedDOMComponentsWithTag(component, 'tr');
-		expect(tr.length).to.equal(11);
+		expect(tr.length).to.equal(matches.length + 1);
 	});
 
 	it('should render 6 th columns', () => {
