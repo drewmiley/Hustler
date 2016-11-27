@@ -42,6 +42,11 @@ describe('FixtureList', () => {
 		expect(thead.length).to.equal(1);
 	});
 
+	it('should render a tbody', () => {
+		const tbody = scryRenderedDOMComponentsWithTag(component, 'tbody');
+		expect(tbody.length).to.equal(1);
+	});
+
 	it('should render trs equal to number of matches plus 1', () => {
 		const tr = scryRenderedDOMComponentsWithTag(component, 'tr');
 		expect(tr.length).to.equal(matches.length + 1);
@@ -80,11 +85,6 @@ describe('FixtureList', () => {
 	it('should render Away in the sixth th column', () => {
 		const th = scryRenderedDOMComponentsWithTag(component, 'th');
 		expect(th[5].textContent).to.equal('Away');
-	});
-
-	it('should render a tbody', () => {
-		const tbody = scryRenderedDOMComponentsWithTag(component, 'tbody');
-		expect(tbody.length).to.equal(1);
 	});
 
 	it('should not display the fixture list when show is set to false', () => {

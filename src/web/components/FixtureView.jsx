@@ -10,7 +10,7 @@ export default class FixtureView extends Component {
 		};
 	};
 	render() {
-		return <tr className={classNames(this.props.className)}>
+		return <tr className={classNames(this.props.match.className)}>
 			<td>{this.props.match.formattedDate}</td>
 			<td>{this.props.match.homePlayer}</td>
 			<td>{this.props.match.homeScore}</td>

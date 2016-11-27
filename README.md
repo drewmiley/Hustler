@@ -63,6 +63,7 @@ This folder contains the database structure which is called by the functions in 
     |   +-- FixtureGrid.jsx
     |   +-- FixtureList.jsx
     |   +-- FixtureView.jsx
+    |   +-- LeagueTable.jsx
     |   +-- Menu.jsx
     +-- constants
     |   +-- actions.js

@@ -8,17 +8,18 @@ export default class FixtureList extends Component {
 		this.shouldComponentUpdate = (nextProps, nextState) => {
 			return this.props.show !== nextProps.show;
 		};
-		this.state = {
-			gameWeek: this.props.api.gameweek.getByDate(new Date()),
-			matches: this.props.api.match.get().map(match => this.formMatch(match))
-		};
 	};
-	formMatch(match) {
-		let formattedMatch = Object.assign({}, match);
-		formattedMatch.formattedDate = this.props.api.gameweek.getByWeekNumber(match.gameWeek).formattedDate;
-		formattedMatch.homePlayer = this.props.api.player.get().find(player => player.id === match.homePlayerID).name;
-		formattedMatch.awayPlayer = this.props.api.player.get().find(player => player.id === match.awayPlayerID).name;
-		return formattedMatch;
+	format(match) {
+		const gameWeek = this.props.api.gameweek.getByDate(new Date());
+		return {
+			id: match.id,
+			className: match.gameWeek === gameWeek.number ? 'current' : (match.gameWeek < gameWeek.number && !match.isPlayed ? 'overdue' : ''),
+			formattedDate: this.props.api.gameweek.getByWeekNumber(match.gameWeek).formattedDate,
+			homePlayer: this.props.api.player.get().find(player => player.id === match.homePlayerID).name,
+			awayPlayer: this.props.api.player.get().find(player => player.id === match.awayPlayerID).name,
+			homeScore: match.homeScore,
+			awayScore: match.awayScore
+		};
 	};
 	render() {   
 		return <div id='fixtureList' className='col-md-10 col-sm-12' style={this.props.show ? {} : { 'display': 'none' }} >
@@ -34,11 +35,10 @@ export default class FixtureList extends Component {
 					</tr>
 				</thead>
 				<tbody>
-				{this.state.matches.map(match =>
+				{this.props.api.match.get().map(match =>
 					<FixtureView 
 						key={match.id}
-						className={match.gameWeek === this.state.gameWeek.number ? 'current' : (match.gameWeek < this.state.gameWeek.number && !match.isPlayed ? 'overdue' : '')}
-						match={match} />
+						match={this.format(match)} />
 				)}
 				</tbody>
 			</table>

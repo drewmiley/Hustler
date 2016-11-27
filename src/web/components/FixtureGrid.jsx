@@ -6,9 +6,6 @@ export default class FixtureGrid extends Component {
 		this.shouldComponentUpdate = (nextProps, nextState) => {
 			return this.props.show !== nextProps.show;
 		};
-		this.state = {
-			players: this.props.api.player.get()
-		};
 	};
 	formatMatchForGrid(firstPlayerID, secondPlayerID) {
 		if (firstPlayerID === secondPlayerID) {
@@ -19,14 +16,13 @@ export default class FixtureGrid extends Component {
 			(firstPlayerID === match.homePlayerID ? match.homeScore + '-' + match.awayScore : match.awayScore + '-' + match.homeScore) :
 			this.props.api.gameweek.getByWeekNumber(match.gameWeek).formattedDate;
 	};
-	format
 	render() {   
 		return <div id='fixtureGrid' className='col-md-10 col-sm-12' style={this.props.show ? {} : { 'display': 'none' }} >
 			<table className='table table-striped'>
 				<thead className='thead-default'>
 					<tr>
 						<th></th>
-						{this.state.players.map(player =>
+						{this.props.api.player.get().map(player =>
 							<th key={player.id}>
 								{player.name}
 							</th>
@@ -34,12 +30,12 @@ export default class FixtureGrid extends Component {
 					</tr>
 				</thead>
 				<tbody>
-					{this.state.players.map(outerPlayer =>
+					{this.props.api.player.get().map(outerPlayer =>
 						<tr key={outerPlayer.id}>
 							<th>
 								{outerPlayer.name}
 							</th>
-							{this.state.players.map(innerPlayer =>
+							{this.props.api.player.get().map(innerPlayer =>
 								<td key={outerPlayer.id + '-' + innerPlayer.id}>
 									{this.formatMatchForGrid(outerPlayer.id, innerPlayer.id)}
 								</td>
