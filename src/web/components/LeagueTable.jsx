@@ -15,20 +15,28 @@ export default class FixtureList extends Component {
 				{ framesWon: match.homeScore, framesLost: match.awayScore } :
 				{ framesWon: match.awayScore, framesLost: match.homeScore };
 		});
-		return {
-			id: player.id,
-			name: player.name,
-			played: playerMatches.length,
-			won: playerMatches.filter(match => match.framesWon > match.framesLost || match.framesWon === 'W').length,
-			drew: playerMatches.filter(match => match.framesWon === match.framesLost).length,
-			lost: playerMatches.filter(match => match.framesWon < match.framesLost || match.framesLost === 'W').length,
-			framesWon: playerMatches.map(match => match.framesWon === 'W' ? 6 : match.framesWon ).reduce(((a, b) => a + b), 0),
-			framesLost: playerMatches.map(match => match.framesLost === 'W' ? 6 : match.framesLost ).reduce(((a, b) => a + b), 0),
-			bonus: playerMatches.filter(match => match.framesWon === 6).length
-		};
+		const id = player.id;
+		const name = player.name;
+		const played = playerMatches.length;
+		const won = playerMatches.filter(match => match.framesWon > match.framesLost || match.framesWon === 'W').length;
+		const drew = playerMatches.filter(match => match.framesWon === match.framesLost).length;
+		const lost = playerMatches.filter(match => match.framesWon < match.framesLost || match.framesLost === 'W').length;
+		const framesWon = playerMatches.map(match => match.framesWon === 'W' ? 6 : match.framesWon ).reduce(((a, b) => a + b), 0);
+		const framesLost = playerMatches.map(match => match.framesLost === 'W' ? 6 : match.framesLost ).reduce(((a, b) => a + b), 0);
+		const bonus = playerMatches.filter(match => match.framesWon === 6).length;
+		const points = 3 * won + drew + framesWon + bonus;
+		return { id, name, played, won, drew, lost, framesWon, framesLost, bonus, points };
 	};
-	sortPlayerRows(playerRows) {
-		return playerRows;
+	sortRows(a, b) {
+		return a.points === b.points ?
+			(a.bonus === b.bonus ? this.headToHeadSort(a, b): b.bonus - a.bonus):
+			b.points - a.points;
+	};
+	headToHeadSort(a, b) {
+		const match = this.props.api.match.getForPair([a.id, b.id]);
+		return match.homePlayerID === a.id ?
+			match.awayScore - match.homeScore :
+			match.homeScore - match.awayScore;
 	};
 	render() {   
 		return <div id='leagueTable' className='col-md-10 col-sm-12' style={this.props.show ? {} : { 'display': 'none' }}>
@@ -48,7 +56,9 @@ export default class FixtureList extends Component {
 					</tr>
 				</thead>
 				<tbody>
-					{this.sortPlayerRows(this.props.api.player.get().map(player => this.formPlayerRow(player))).map(player =>
+					{this.props.api.player.get().map(player => this.formPlayerRow(player))
+						.sort((a, b) => this.sortRows(a, b))
+						.map(player =>
 						<tr key={player.id}>
 							<th>{player.name}</th>
 							<td>{player.played}</td>
@@ -59,7 +69,7 @@ export default class FixtureList extends Component {
 							<td>{player.framesLost}</td>
 							<td>{player.framesWon - player.framesLost}</td>
 							<td>{player.bonus}</td>
-							<td>{3 * player.won + player.drew + player.framesWon + player.bonus}</td>
+							<td>{player.points}</td>
 						</tr>
 					)}
 				</tbody>
