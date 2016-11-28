@@ -15,6 +15,7 @@ describe('FixtureList', () => {
 
 	const api = {
 		gameweek: {
+			get: (() => gameWeeks),
 			getByDate: (() => gameWeeks[0]),
 			getByWeekNumber: (() => gameWeeks[0])
 		},
@@ -45,6 +46,11 @@ describe('FixtureList', () => {
 	it('should render a tbody', () => {
 		const tbody = scryRenderedDOMComponentsWithTag(component, 'tbody');
 		expect(tbody.length).to.equal(1);
+	});
+
+	it('should render 3 select dropdowns', () => {
+		const select = scryRenderedDOMComponentsWithTag(component, 'select');
+		expect(select.length).to.equal(3);
 	});
 
 	it('should render trs equal to number of matches plus 1', () => {
