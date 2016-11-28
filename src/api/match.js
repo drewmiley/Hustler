@@ -28,15 +28,3 @@ export const getForPair = (playerIds) => {
 				(match.homePlayerID === playerIds[1] && match.awayPlayerID === playerIds[0])
 		}) : undefined;
 };
-
-export const getMatchesForGameWeek = (gameWeekNumber, isPlayed) => {
-	return getMatchesForGameWeeks([gameWeekNumber], isPlayed);
-};
-
-export const getMatchesForGameWeeks = (gameWeekNumbers, isPlayed) => {
-	const isPlayedCondition = _isPlayedCondition(isPlayed);
-	// TODO: Use .includes(), rather than .indexOf()
-	return Object.prototype.toString.call(gameWeekNumbers) === '[object Array]' ?
-		Matches.filter(match => gameWeekNumbers.indexOf(match.gameWeek) !== -1 && isPlayedCondition(match)):
-		[];
-};

@@ -32,8 +32,6 @@ npm test
     |   .getById(id)
     |   .getForPlayer(playerId, [isPlayed])
     |   .getForPair(playerIds)
-    |   .getMatchesForGameWeek(gameWeekNumber, [isPlayed])
-    |   .getMatchesForGameWeeks(gameWeekNumbers, [isPlayed])
     +-- player.js
     |   .get()
     |   .getById(id)
