@@ -52,7 +52,8 @@ export default class FixtureList extends Component {
 			{ display: 'All', filter: (() => true) },
 			{ display: 'Played', filter: ((match) => match.isPlayed) },
 			{ display: 'Unplayed', filter: ((match) => !match.isPlayed) },
-			{ display: 'Walkover', filter: ((match) => match.homeScore === 'W' || match.awayScore === 'W') }
+			{ display: 'Walkover', filter: ((match) => match.homeScore === 'W' || match.awayScore === 'W') },
+			{ display: 'Whitewash', filter: ((match) => (match.homeScore === 6 && match.awayScore === 0) || (match.awayScore === 6 && match.homeScore === 0))}
 		];
 		return gameStatuses;
 	};
