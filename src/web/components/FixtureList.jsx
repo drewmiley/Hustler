@@ -39,8 +39,12 @@ export default class FixtureList extends Component {
 			}));
 	};
 	dateOptions() {
-		return [{ display: 'All', filter: (() => true)}]
-			.concat(this.props.api.gameweek.get().map(gameWeek => {
+		return [
+				{ display: 'All', filter: (() => true)},
+				{ display: 'Current', filter: ((match) => match.gameWeek === this.props.api.gameweek.getByDate(new Date()).number)},
+				{ display: 'Future', filter: ((match) => match.gameWeek > this.props.api.gameweek.getByDate(new Date()).number)},
+				{ display: 'Past', filter: ((match) => match.gameWeek < this.props.api.gameweek.getByDate(new Date()).number)}
+			].concat(this.props.api.gameweek.get().map(gameWeek => {
 				return {
 					display: gameWeek.formattedDate,
 					filter: ((match) => match.gameWeek === gameWeek.number)
