@@ -61,30 +61,36 @@ export default class FixtureList extends Component {
 	};
 	render() {   
 		return <div id='fixtureList' className='col-md-10 col-sm-12' style={this.props.show ? {} : { 'display': 'none' }} >
-			<div className='panel-heading'>Player:</div>
-			<select
-				className='form-control'
-				onChange={(e) => this.setState({ playerFilter: this.playerOptions().find(option => option.display === e.target.value).filter})}>
-				{this.playerOptions().map(option =>
-					<option key={option.display} value={option.display}>{option.display}</option>
-				)}
-			</select>
-			<div className='panel-heading'>Date:</div>
-			<select
-				className='form-control'
-				onChange={(e) => this.setState({ dateFilter: this.dateOptions().find(option => option.display === e.target.value).filter})}>
-				{this.dateOptions().map(option =>
-					<option key={option.display} value={option.display}>{option.display}</option>
-				)}
-			</select>
-			<div className='panel-heading'>Status:</div>
-			<select
-				className='form-control'
-				onChange={(e) => this.setState({ statusFilter: this.statusOptions().find(option => option.display === e.target.value).filter})}>
-				{this.statusOptions().map(option =>
-					<option key={option.display} value={option.display}>{option.display}</option>
-				)}
-			</select>
+			<div className='panel panel-default'>
+				<div className='panel-heading'>Player:</div>
+				<select
+					className='form-control'
+					onChange={(e) => this.setState({ playerFilter: this.playerOptions().find(option => option.display === e.target.value).filter})}>
+					{this.playerOptions().map(option =>
+						<option key={option.display} value={option.display}>{option.display}</option>
+					)}
+				</select>
+			</div>
+			<div className='panel panel-default'>
+				<div className='panel-heading'>Date:</div>
+				<select
+					className='form-control'
+					onChange={(e) => this.setState({ dateFilter: this.dateOptions().find(option => option.display === e.target.value).filter})}>
+					{this.dateOptions().map(option =>
+						<option key={option.display} value={option.display}>{option.display}</option>
+					)}
+				</select>
+			</div>
+			<div className='panel panel-default'>
+				<div className='panel-heading'>Status:</div>
+				<select
+					className='form-control'
+					onChange={(e) => this.setState({ statusFilter: this.statusOptions().find(option => option.display === e.target.value).filter})}>
+					{this.statusOptions().map(option =>
+						<option key={option.display} value={option.display}>{option.display}</option>
+					)}
+				</select>
+			</div>
 			<table className='table'>
 				<thead className='thead-default'>
 					<tr>
