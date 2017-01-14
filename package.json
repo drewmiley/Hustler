@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "test": "mocha --compilers js:babel-core/register --require ./test/setup.js \"test/**/*.@(js|jsx)\" --recursive"
+    "test": "eslint src/**/*.js src/**/*.jsx && mocha --compilers js:babel-core/register --require ./test/setup.js \"test/**/*.@(js|jsx)\" --recursive"
   },
   "repository": {
     "type": "git",
@@ -33,6 +33,8 @@
     "chai-datetime": "^1.4.1",
     "chai-immutable": "^1.6.0",
     "css-loader": "^0.23.1",
+    "eslint": "^3.13.1",
+    "eslint-plugin-react": "^6.9.0",
     "jsdom": "^9.4.1",
     "mocha": "^3.0.0",
     "react-addons-test-utils": "^15.3.0",
