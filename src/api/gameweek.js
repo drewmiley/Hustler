@@ -14,7 +14,7 @@ export const getByDate = (date) => {
 	// TODO: Tidy up?
 	if (Object.prototype.toString.call(date) !== '[object Date]') {
 		return;
-	};
+	}
 	const futureGameWeeks = GameWeeks.filter(gameWeek => gameWeek.date.getTime() <= date.getTime());
 	const validWeekNumber = futureGameWeeks.length ? Math.max.apply(Math, futureGameWeeks.map(gameWeek => gameWeek.number)) : 0;
 	return validWeekNumber ? GameWeeks.find(gameWeek => gameWeek.number === validWeekNumber) : new GameWeek(0);
