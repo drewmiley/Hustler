@@ -57,11 +57,6 @@ describe('LeagueTable', () => {
 		expect(th.length).to.equal(players.length + 10);
 	});
 
-	it('should render Name in the first th column', () => {
-		const th = scryRenderedDOMComponentsWithTag(component, 'th');
-		expect(th[0].textContent).to.equal('Name');
-	});
-
 	it('should render P in the second th column', () => {
 		const th = scryRenderedDOMComponentsWithTag(component, 'th');
 		expect(th[1].textContent).to.equal('P');

@@ -48,9 +48,9 @@ describe('FixtureList', () => {
 		expect(tbody.length).to.equal(1);
 	});
 
-	it('should render 3 select dropdowns', () => {
+	it('should render 4 select dropdowns', () => {
 		const select = scryRenderedDOMComponentsWithTag(component, 'select');
-		expect(select.length).to.equal(3);
+		expect(select.length).to.equal(4);
 	});
 
 	it('should render trs equal to number of matches plus 1', () => {

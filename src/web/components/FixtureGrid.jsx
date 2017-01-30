@@ -21,8 +21,10 @@ export default class FixtureGrid extends Component {
 			<table className='table table-striped'>
 				<thead className='thead-default'>
 					<tr>
-						<th></th>
-						{this.props.api.player.get().map(player =>
+						<th>{this.props.division}</th>
+						{this.props.api.player.get()
+							.filter(player => player.division === this.props.division)
+							.map(player =>
 							<th key={player.id}>
 								{player.name}
 							</th>
@@ -30,12 +32,16 @@ export default class FixtureGrid extends Component {
 					</tr>
 				</thead>
 				<tbody>
-					{this.props.api.player.get().map(outerPlayer =>
+					{this.props.api.player.get()
+						.filter(player => player.division === this.props.division)
+						.map(outerPlayer =>
 						<tr key={outerPlayer.id}>
 							<th>
 								{outerPlayer.name}
 							</th>
-							{this.props.api.player.get().map(innerPlayer =>
+							{this.props.api.player.get()
+								.filter(player => player.division === this.props.division)
+								.map(innerPlayer =>
 								<td key={outerPlayer.id + '-' + innerPlayer.id}>
 									{this.formatMatchForGrid(outerPlayer.id, innerPlayer.id)}
 								</td>

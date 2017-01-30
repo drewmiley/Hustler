@@ -43,7 +43,7 @@ export default class FixtureList extends Component {
 			<table className='table table-striped'>
 				<thead className='thead-default'>
 					<tr>
-						<th>Name</th>
+						<th>{this.props.division}</th>
 						<th>P</th>
 						<th>W</th>
 						<th>D</th>
@@ -56,10 +56,12 @@ export default class FixtureList extends Component {
 					</tr>
 				</thead>
 				<tbody>
-					{this.props.api.player.get().map(player => this.formPlayerRow(player))
+					{this.props.api.player.get()
+						.filter(player => player.division === this.props.division)
+						.map(player => this.formPlayerRow(player))
 						.sort((a, b) => this.sortRows(a, b))
-						.map(player =>
-						<tr key={player.id}>
+						.map((player, index) =>
+						<tr style={index < 4 ? { 'backgroundColor': '#E6BE8A' }: {}} key={player.id}>
 							<th>{player.name}</th>
 							<td>{player.played}</td>
 							<td>{player.won}</td>

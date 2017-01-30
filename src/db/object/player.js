@@ -1,6 +1,7 @@
-export default (id, name) => {
+export default (id, name, division) => {
     return {
     	id,
-    	name
+    	name,
+    	division
     };
 };

@@ -18,12 +18,22 @@ class App extends Component {
 			<DisplayTitle displayedClass={this.props.displayClasses.get('selected')} />
 			<FixtureGrid
 				api={this.props.api}
+				division='A'
+				show={this.props.displayClasses.get('selected') === 'Fixture Grid'} />
+			<FixtureGrid
+				api={this.props.api}
+				division='B'
 				show={this.props.displayClasses.get('selected') === 'Fixture Grid'} />
 			<FixtureList
 				api={this.props.api}
 				show={this.props.displayClasses.get('selected') === 'Fixture List'} />
 			<LeagueTable
 				api={this.props.api}
+				division='A'
+				show={this.props.displayClasses.get('selected') === 'League Table'} />
+			<LeagueTable
+				api={this.props.api}
+				division='B'
 				show={this.props.displayClasses.get('selected') === 'League Table'} />
 		</div>
 	};

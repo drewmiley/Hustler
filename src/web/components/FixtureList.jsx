@@ -7,11 +7,13 @@ export default class FixtureList extends Component {
 		super(props);
 		this.shouldComponentUpdate = (nextProps, nextState) => {
 			return this.props.show !== nextProps.show ||
+				this.state.divisionFilter !== nextState.divisionFilter ||
 				this.state.playerFilter !== nextState.playerFilter ||
 				this.state.dateFilter !== nextState.dateFilter ||
 				this.state.statusFilter !== nextState.statusFilter;
 		};
 		this.state = {
+			divisionFilter: this.divisionOptions()[0].filter,
 			playerFilter: this.playerOptions()[0].filter,
 			dateFilter: this.dateOptions()[0].filter,
 			statusFilter: this.statusOptions()[0].filter
@@ -29,6 +31,16 @@ export default class FixtureList extends Component {
 			awayScore: match.awayScore
 		};
 	};
+	divisionOptions() {
+		const divisionStatuses = [
+			{ display: 'All', filter: (() => true) },
+			{ display: 'A', filter: ((match) => this.props.api.player.get().find(player => player.id === match.homePlayerID).division === 'A' &&
+				this.props.api.player.get().find(player => player.id === match.awayPlayerID).division === 'A') },
+			{ display: 'B', filter: ((match) => this.props.api.player.get().find(player => player.id === match.homePlayerID).division === 'B' &&
+				this.props.api.player.get().find(player => player.id === match.awayPlayerID).division === 'B') }
+		];
+		return divisionStatuses;
+	}
 	playerOptions() {
 		return [{ display: 'All', filter: (() => true) }]
 			.concat(this.props.api.player.get().map(player => {
@@ -62,10 +74,20 @@ export default class FixtureList extends Component {
 		return gameStatuses;
 	};
 	filterMatch(match) {
-		return this.state.playerFilter(match) && this.state.dateFilter(match) && this.state.statusFilter(match);
+		return this.state.divisionFilter(match) && this.state.playerFilter(match) && this.state.dateFilter(match) && this.state.statusFilter(match);
 	};
 	render() {   
 		return <div id='fixtureList' className='col-md-10 col-sm-12' style={this.props.show ? {} : { 'display': 'none' }} >
+			<div className='panel panel-default'>
+				<div className='panel-heading'>Division:</div>
+				<select
+					className='form-control'
+					onChange={(e) => this.setState({ divisionFilter: this.divisionOptions().find(option => option.display === e.target.value).filter})}>
+					{this.divisionOptions().map(option =>
+						<option key={option.display} value={option.display}>{option.display}</option>
+					)}
+				</select>
+			</div>
 			<div className='panel panel-default'>
 				<div className='panel-heading'>Player:</div>
 				<select
@@ -110,6 +132,7 @@ export default class FixtureList extends Component {
 				<tbody>
 				{this.props.api.match.get()
 					.filter(match => this.filterMatch(match))
+					.sort((a, b) => a.gameWeek - b.gameWeek)
 					.map(match =>
 					<FixtureView 
 						key={match.id}
